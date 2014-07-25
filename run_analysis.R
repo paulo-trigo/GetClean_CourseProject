@@ -1,5 +1,5 @@
 ##________________________________________________________________________
-## Getting—and-Cleaning-Data-course@coursera
+## Gettingâ€”and-Cleaning-Data-course-coursera
 ## Programming Assignment:
 ## Wearable Computing
 ## (peer assessment)
@@ -32,10 +32,25 @@
 ##________________________________________________________________________
 
 
+
 ##________________________________________________________________________
 # cleanup
 # removes all objects except for functions:
 rm( list = setdiff( ls(), lsf.str() ) )
+cat( "Gettingâ€”and-Cleaning-Data - Programming Assignment\n" )
+
+
+
+##________________________________________________________________________
+# set the current working directory
+work.dir.initial <- getwd()
+data.dir <- "UCI-HAR-Dataset"
+work.dir <- file.path( work.dir.initial, data.dir )
+if( !file.exists ( work.dir ) )
+   stop( paste( ">> current directory must contain:", data.dir ) )
+setwd( work.dir )
+
+
 ##
 ##________________________________________________________________________
 ## additional package install and load
@@ -134,10 +149,14 @@ ADD_ATTR <- function( ATTR.NAME, ATTR.DATA, FROM ) {
 ##________________________________________________________________________
 ##________________________________________________________________________
 ## This R-script performs the following "Getting-and-Cleaning" steps:
-## 1. Merges the training and the test sets to create one data set.## 2. Extracts only the measurements on the:
-##    - mean and standard deviation for each measurement.## 3. Uses descriptive activity names
-##    to name the activities in the data set## 4. Appropriately labels the data set with descriptive variable names.
-#### 5. Creates a second, independent tidy data set with the:
+## 1. Merges the training and the test sets to create one data set.
+## 2. Extracts only the measurements on the:
+##    - mean and standard deviation for each measurement.
+## 3. Uses descriptive activity names
+##    to name the activities in the data set
+## 4. Appropriately labels the data set with descriptive variable names.
+##
+## 5. Creates a second, independent tidy data set with the:
 ##    - average of each variable for each activity and each subject.
 ##________________________________________________________________________
 ##________________________________________________________________________
@@ -152,7 +171,8 @@ ADD_ATTR <- function( ATTR.NAME, ATTR.DATA, FROM ) {
 ##
 ## the output is a dataset that implements:
 ## - 3. Uses descriptive activity names
-##      to name the activities in the data set## - 4. Appropriately labels the data set with descriptive variable names
+##      to name the activities in the data set
+## - 4. Appropriately labels the data set with descriptive variable names
 ## - extend the dataset to include the "subject" and "activity" features
 ## 
 ##________________________________________________________________________
@@ -183,7 +203,7 @@ buildDatasetHAR <- function( df.feature.names, df.X, df.y,
          FROM=df.X )
 
    # filter the complete cases (i.e., not containing NA)
-   df.dataset <- df.dataset[ complete.cases( df.dataset ), ]
+   df.dataset <- df.dataset[Â complete.cases( df.dataset ), ]
    return( df.dataset )
 }
 
@@ -195,6 +215,7 @@ buildDatasetHAR <- function( df.feature.names, df.X, df.y,
 ##________________________________________________________________________
 # get the feature names
 # - names are guaranteed to be syntactically valid via "make.names"
+cat( "- get the feature names\n" )
 df.feature.names <- getTable( filename="features", dir="." )
 df.feature.names <- make.names( as.character( df.feature.names$V2 ) )
 
@@ -213,10 +234,12 @@ df.activity.labels <- getTable( filename="activity_labels", dir="." )
 ##________________________________________________________________________
 # build the "train" dataset
 ##________________________________________________________________________
+cat( "- get the 'train' 'X' & 'y' & 'subject' data\n" )
 df.X <- getTable( filename="X_train", dir="train" )
 df.y <- getTable( filename="y_train", dir="train" )
 df.subject <- getTable( filename="subject_train", dir="train" )
 
+cat( "- build the 'train' dataset\n" )
 df.dataset.train <-
    buildDatasetHAR(
       df.feature.names=df.feature.names, df.X=df.X, df.y=df.y$V1,
@@ -231,10 +254,12 @@ df.dataset.train <-
 ##________________________________________________________________________
 # build the "test" dataset
 ##________________________________________________________________________
+cat( "- get the 'test' 'X' & 'y' & 'subject' data\n" )
 df.X <- getTable( filename="X_test", dir="test" )
 df.y <- getTable( filename="y_test", dir="test" )
 df.subject <- getTable( filename="subject_test", dir="test" )
 
+cat( "- build the 'test' dataset\n" )
 df.dataset.test <-
    buildDatasetHAR(
       df.feature.names=df.feature.names, df.X=df.X, df.y=df.y$V1,
@@ -248,6 +273,7 @@ df.dataset.test <-
 ##________________________________________________________________________
 # build the UNION of "train" and "test" datasets
 ##________________________________________________________________________
+cat( "- build the union of 'train and 'test' dataset\n" )
 df.dataset <-
    UNION( T1=df.dataset.train, T2=df.dataset.test )
 
@@ -263,10 +289,11 @@ df.dataset <-
 # - "mean" and "std" features, and 
 # - also the "subject" and "activity"
 ##________________________________________________________________________
+cat( "- extract the 'mean' and 'std' features\n" )
 regexp <- paste0( "(mean|std", "|", 
                   attr.name.subject, "|", 
                   attr.name.activity, ")" )
-df.dataset <- df.dataset[ grep( regexp, names( df.dataset ), value=TRUE ) ]
+df.dataset <- df.dataset[Â grep( regexp, names( df.dataset ), value=TRUE ) ]
 
 dim( df.dataset )
 #[1] 10299   81
@@ -279,12 +306,12 @@ dim( df.dataset )
 ##________________________________________________________________________
 # write the resulting dataset (train&test)
 ##________________________________________________________________________
-filename <- "dataset.train.test"
-file.ext <- ".txt"
-filename <- paste0( filename, file.ext )
-write.table( df.dataset, file=filename )
+#filename <- "dataset.train.test"
+#file.ext <- ".txt"
+#filename <- paste0( filename, file.ext )
+#write.table( df.dataset, file=filename )
 
-file.info( file=filename )$size
+#file.info( file=filename )$size
 #[1] 9907459
 
 #df.dataset <- getTable( filename=filename, dir="." )
@@ -296,6 +323,7 @@ file.info( file=filename )$size
 ##________________________________________________________________________
 ## 5. Creates a second, independent tidy data set with the:
 ##    - average of each variable for each activity and each subject.
+cat( "- build the tidy dataset\n" )
 df.dataset.tidy.mean <-
    GROUP(
       ATTR.BY=c( attr.name.activity, attr.name.subject ),
@@ -308,9 +336,14 @@ dim( df.dataset.tidy.mean )
 
 ##________________________________________________________________________
 ## write the resulting dataset (mean of each feature in train&test)
+cat( "- write the tidy dataset\n" )
+# return to the initial current working directory
+setwd( work.dir.initial )
+
 filename <- "dataset.train.test.tidy.mean"
 file.ext <- ".txt"
 filename <- paste0( filename, file.ext )
+
 write.table( df.dataset.tidy.mean, file=filename )
 
 file.info( file=filename )$size
