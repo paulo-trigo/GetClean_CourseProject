@@ -42,8 +42,6 @@ d. the code generates the "tidy" dataset in the file:
 10. write the tidy dataset to file:
     `dataset.train.test.tidy.mean.txt`
 
-***The "coding conventions" are described in the initial comments of "run_analysis.R" file.***
-
 
 ### The "run_analysis.R" two major blocks:
 
@@ -66,6 +64,7 @@ d. the code generates the "tidy" dataset in the file:
 
 * the goal was to keep the code "as simple (readable) as possible"
 
+***The "coding conventions" are described in the initial comments of "run_analysis.R" file.***
 
 
 ## - The "code book" generation:
