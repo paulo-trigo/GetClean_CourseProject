@@ -8,22 +8,22 @@
 
 - `features_info.tidy.txt`, describes the variables and the way they were computed; provides a first paragraph describing the main difference regarding the original "UCI-HAR-Dataset"
 
-*Note: there is a piece of code that is common to both the "run_analysis.R" and "build_codeBook.R" files; such code was not factored (into a different file) in order to keep each file self-contained.*     
+*Note: there is a piece of code that is common to both the "run_analysis.R" and "run_generateCodeBook.R" files; such code was not factored (into a different file) in order to keep each file self-contained.*     
 
 
 ## - The "data analysis" execution:
 
 a. start the R environment
 
-x. change the ""working directory":
+b. change the ""working directory":
 
 	choose the directory that contains "UCI-HAR-Dataset"
 
-x. execute:
+c. execute:
 
 	source( "run_analysis.R" )
 
-x. the code generates the "tidy" dataset in the file:
+d. the code generates the "tidy" dataset in the file:
 
     dataset.train.test.tidy.mean.txt
     
@@ -31,15 +31,15 @@ x. the code generates the "tidy" dataset in the file:
 ### The "run_analysis.R" steps:
 
 1. get the feature names
-x. get the 'activity' feature labels
-x. get the 'train' 'X' & 'y' & 'subject' data
-x. build the 'train' dataset (with descriptive 'activity' labels)
-x. get the 'test' 'X' & 'y' & 'subject' data
-x. build the 'train' dataset (with descriptive 'activity' labels)
-x. build the union of 'train and 'test' dataset
-x. extract the 'mean' and 'std' features
-x. build the tidy dataset (mean grouped by 'activity & 'subject')
-x. write the tidy dataset to file:
+2. get the 'activity' feature labels
+3. get the 'train' 'X' & 'y' & 'subject' data
+4. build the 'train' dataset (with descriptive 'activity' labels)
+5. get the 'test' 'X' & 'y' & 'subject' data
+6. build the 'train' dataset (with descriptive 'activity' labels)
+7. build the union of 'train and 'test' dataset
+8. extract the 'mean' and 'std' features
+9. build the tidy dataset (mean grouped by 'activity & 'subject')
+10. write the tidy dataset to file:
     `dataset.train.test.tidy.mean.txt`
 
 
@@ -70,15 +70,15 @@ x. write the tidy dataset to file:
 
 a. start the R environment
 
-x. change the ""working directory":
+b. change the ""working directory":
 
 	choose the directory that contains "UCI-HAR-Dataset"
 
-x. execute:
+c. execute:
 
 	source( "build_codeBook.R" )
 
-x. the code generates the "tidy" code book in the file:
+d. the code generates the "tidy" code book in the file:
 
     features.tidy.txt
 
@@ -86,9 +86,9 @@ x. the code generates the "tidy" code book in the file:
 ### The "build_codeBook.R" steps:
 
 1. get the feature names
-x. extract the 'mean' and 'std' features
-x. append the 'subject' and 'activity' features
-x. write the tidy features to file:
+2. extract the 'mean' and 'std' features
+3. append the 'subject' and 'activity' features
+4. write the tidy features to file:
     `features.tidy.txt`
 
 
