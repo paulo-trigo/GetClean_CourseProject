@@ -8,6 +8,8 @@
 
 - `features_info.tidy.txt`, describes the variables and the way they were computed.
 
+*Note: there is a little piece of code that is common to both the "run_analysis.R" and "build_codeBook.R" files; such code was not factored (into a different file) in order to keep both files self-contained.*     
+
 
 ## - The "data analysis" execution:
 
