@@ -64,7 +64,7 @@ d. the code generates the "tidy" dataset in the file:
 
 * the goal was to keep the code "as simple (readable) as possible"
 
-***The "coding conventions" are described in the initial comments of "run_analysis.R" file.***
+*** The "coding conventions" are described in the initial comments of "run_analysis.R" file.***
 
 
 ## - The "code book" generation:
