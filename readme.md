@@ -15,15 +15,15 @@ a. start the R environment
 
 b. change the ""working directory":
 
-	`choose the directory that contains "UCI-HAR-Dataset"`
+	choose the directory that contains "UCI-HAR-Dataset"
 
 c. execute:
 
-	`source( "run_analysis.R" )`
+	source( "run_analysis.R" )
 
 d. the code generates the "tidy" dataset in the file:
 
-    `dataset.train.test.tidy.mean.txt`
+    dataset.train.test.tidy.mean.txt
     
       
 ### The "run_analysis.R" steps:
@@ -67,15 +67,15 @@ a. start the R environment
 
 b. change the ""working directory":
 
-	`choose the directory that contains "UCI-HAR-Dataset"`
+	choose the directory that contains "UCI-HAR-Dataset"
 
 c. execute:
 
-	`source( "build_codeBook.R" )`
+	source( "build_codeBook.R" )
 
 d. the code generates the "tidy" code book in the file:
 
-    `features.tidy.txt`
+    features.tidy.txt
 
 
 ### The "build_codeBook.R" steps:
@@ -85,6 +85,6 @@ d. the code generates the "tidy" code book in the file:
 3. write the tidy features to file:
     `features.tidy.txt`
 
-
+     
 #### *Additional information:*
 * the code comments describe all the details needed to understand the approach
