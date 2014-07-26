@@ -84,3 +84,7 @@ d. the code generates the "tidy" code book in the file:
 2. extract the 'mean' and 'std' features
 3. write the tidy features to file:
     `features.tidy.txt`
+
+
+#### *Additional information:*
+* the code comments describe all the details needed to understand the approach
