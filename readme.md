@@ -47,7 +47,7 @@ d. the code generates the "tidy" dataset in the file:
 
 * domain independent functions that follow the SQL paradigm
 
-* domain dependent functions that implement this analysis workflow
+* domain dependent functions that implement this "data analysis"" workflow
 
 
 ##### >> The domain independent functions are:
@@ -58,11 +58,11 @@ d. the code generates the "tidy" dataset in the file:
 
 ##### >> The domain dependent functions are:
 
-* "buildDatasetHAR" that executes the same procedure both for the "train" and the "test" datasets
+* "buildDatasetHAR" that executes the same ""data transform workflow" both for the "train" and the "test" datasets
  
 * and remaining script execution was kept flat (i.e., was not further broken down into functions)
 
-* the effort was to keep code "as simple (readable) as possible"
+* the goal was to keep the code "as simple (readable) as possible"
 
 
 
@@ -94,11 +94,11 @@ d. the code generates the "tidy" code book in the file:
 
 ##### The "tidy" dataset main differences (regarding the original "UCI-HAR-Dataset") are:
 
-* this "tidy" dataset only includes features about measurements on the mean and standard deviation for each measurement
+a. this "tidy" dataset only includes features about measurements on the mean and standard deviation for each measurement
 
-* this "tidy" dataset two additional features: 'subject' and 'activity'
+b. this "tidy" dataset two additional features: 'subject' and 'activity'
 
-* all those "measurements features" are aggregated by 'subject' and 'activity' and the average (of each group) is represented as each example (row) of the dataset
+c. all those "measurements features" (cf. item a) are aggregated by 'subject' and 'activity' (cf. item b) and the average (of each group) is represented as an example (row) of the dataset
 
 
 #### *Additional information:*
