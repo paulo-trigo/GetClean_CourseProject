@@ -226,6 +226,7 @@ df.feature.names <- make.names( as.character( df.feature.names$V2 ) )
 # - additional "subject" feature, and
 # - "y" feature with "activity" labels
 ##________________________________________________________________________
+cat( "- get the 'activity' feature labels\n" )
 attr.name.subject <- "subject"
 attr.name.activity <- "activity"
 df.activity.labels <- getTable( filename="activity_labels", dir="." )
@@ -239,7 +240,7 @@ df.X <- getTable( filename="X_train", dir="train" )
 df.y <- getTable( filename="y_train", dir="train" )
 df.subject <- getTable( filename="subject_train", dir="train" )
 
-cat( "- build the 'train' dataset\n" )
+cat( "- build the 'train' dataset (with descriptive 'activity' labels)\n" )
 df.dataset.train <-
    buildDatasetHAR(
       df.feature.names=df.feature.names, df.X=df.X, df.y=df.y$V1,
@@ -259,7 +260,7 @@ df.X <- getTable( filename="X_test", dir="test" )
 df.y <- getTable( filename="y_test", dir="test" )
 df.subject <- getTable( filename="subject_test", dir="test" )
 
-cat( "- build the 'test' dataset\n" )
+cat( "- build the 'train' dataset (with descriptive 'activity' labels)\n" )
 df.dataset.test <-
    buildDatasetHAR(
       df.feature.names=df.feature.names, df.X=df.X, df.y=df.y$V1,
@@ -309,7 +310,7 @@ dim( df.dataset )
 #filename <- "dataset.train.test"
 #file.ext <- ".txt"
 #filename <- paste0( filename, file.ext )
-#write.table( df.dataset, file=filename )
+#write.table( df.dataset, file=filename, quote=FALSE )
 
 #file.info( file=filename )$size
 #[1] 9907459
@@ -323,7 +324,7 @@ dim( df.dataset )
 ##________________________________________________________________________
 ## 5. Creates a second, independent tidy data set with the:
 ##    - average of each variable for each activity and each subject.
-cat( "- build the tidy dataset\n" )
+cat( "- build the tidy dataset (mean grouped by 'activity & 'subject')\n" )
 df.dataset.tidy.mean <-
    GROUP(
       ATTR.BY=c( attr.name.activity, attr.name.subject ),
@@ -336,15 +337,14 @@ dim( df.dataset.tidy.mean )
 
 ##________________________________________________________________________
 ## write the resulting dataset (mean of each feature in train&test)
-cat( "- write the tidy dataset\n" )
-# return to the initial current working directory
-setwd( work.dir.initial )
-
 filename <- "dataset.train.test.tidy.mean"
 file.ext <- ".txt"
 filename <- paste0( filename, file.ext )
+cat( "- write the tidy dataset to file: ", '"', filename, '"', "\n", sep="" )
+# return to the initial current working directory
+setwd( work.dir.initial )
 
-write.table( df.dataset.tidy.mean, file=filename )
+write.table( df.dataset.tidy.mean, file=filename, quote=FALSE )
 
 file.info( file=filename )$size
 #[1] 268630

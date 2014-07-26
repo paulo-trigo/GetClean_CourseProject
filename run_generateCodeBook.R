@@ -57,7 +57,12 @@ df.feature.names <- getTable( filename="features", dir="." )
 cat( "- extract the 'mean' and 'std' features\n" )
 regexp <- paste0( "(mean|std)" )
 filter <- grep( regexp, df.feature.names$V2, value=FALSE )
-df.dataset <- df.feature.names[ filter, ]$V2
+
+# get the factor "V2" (an deal with it as a "dataset")
+cat( "- append the 'subject' and 'activity' features\n" )
+ft.dataset <- df.feature.names[ filter, ]$V2
+ft.dataset <- append( as.character( ft.dataset  ), "subject" )
+ft.dataset <- append( as.character( ft.dataset  ), "activity" )
 
 
 ##________________________________________________________________________
@@ -69,7 +74,7 @@ cat( "- write the tidy features to file: ", '"', filename, '"', "\n", sep="" )
 # return to the initial current working directory
 setwd( work.dir.initial )
 
-write.table( df.dataset, file=filename )
+write.table( ft.dataset, file=filename, quote=FALSE, col.names=FALSE )
 ##________________________________________________________________________
 
 
